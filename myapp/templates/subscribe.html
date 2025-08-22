@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-md mx-auto py-12 px-4">
+    <h2 class="text-3xl font-bold mb-6 text-center">Subscribe to our news letter</h2>
+
+    {% if messages %}
+    <div class="mb-4">
+        {% for message in messages %}
+        <div class="bg-blue-100 text-blue-800 border border-blue-200 px-4 py-3 rounded mb-2" role="alert">
+            <span class="block sm:inline">{{ message }}</span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="post" action="{% url 'subscribe' %}" class="space-y-4">
+        {% csrf_token %}
+        <div>
+            <label for="email" class="block text-gray-700 text-sm font-medium">Email Address</label>
+            <input type="email" name="email" id="email" required
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+
+        <button type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Subscribe
+        </button>
+    </form>
+
+</div>
+
+{% endblock %}
